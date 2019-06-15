@@ -3,7 +3,7 @@
 //
 #include <ostream>
 #include <iostream>
-#include "Cart.h"
+#include "Shop.h"
 
 Soda::Soda(brand sodaBrand, flavour sodaFlavour, bool isGas) {
     this->sodaBrand = sodaBrand;
@@ -99,48 +99,48 @@ void ShoppingCart::addProduct(Product *p) {
 
 unsigned int ShoppingCart::getPrice() {
     unsigned int price = 0;
-    for(int i = 0; i < cart.size(); i++){
+    for (int i = 0; i < cart.size(); i++) {
         price += cart.at(i)->getPrice();
     }
     return price;
 }
 
-std::ostream& operator << (std::ostream &out, const ShoppingCart &s){
-    for(int i = 0; i < s.cart.size(); i++){
+std::ostream &operator<<(std::ostream &out, const ShoppingCart &s) {
+    for (int i = 0; i < s.cart.size(); i++) {
         out << s.cart.at(i)->getName() << std::endl;
     }
     return out;
 }
 
-Tea * TeaChooser::chooseHotBlackTeaWithSugar(){
+Tea *TeaChooser::chooseHotBlackTeaWithSugar() {
     Tea *t = new Tea(true, Tea::black, false, 3);
     return t;
 }
 
-Tea* TeaChooser::chooseColdBlactTeaWithSugarAndIce() {
-    return new Tea (false, Tea::black, true, 3);
+Tea *TeaChooser::chooseColdBlactTeaWithSugarAndIce() {
+    return new Tea(false, Tea::black, true, 3);
 }
 
-Tea* TeaChooser::chooseColdGreenTeaWithoutSugar() {
+Tea *TeaChooser::chooseColdGreenTeaWithoutSugar() {
     return new Tea(false, Tea::green, false, 0);
 }
 
-Chips* ChipsChooser::chooseMuchHotRoundChips() {
+Chips *ChipsChooser::chooseMuchHotRoundChips() {
     return new Chips(Chips::chili, Chips::round, 100);
 }
 
-Chips* ChipsChooser::chooseSomeSaltSqareChips() {
+Chips *ChipsChooser::chooseSomeSaltSqareChips() {
     return new Chips(Chips::salt, Chips::sqare, 20);
 }
 
-Soda* SodaChooser::chooseStandartFanta() {
+Soda *SodaChooser::chooseStandartFanta() {
     return new Soda(Soda::Fanta, Soda::orange, true);
 }
 
-Soda* SodaChooser::chooseCucumberPepsiWitoutGas() {
+Soda *SodaChooser::chooseCucumberPepsiWitoutGas() {
     return new Soda(Soda::Pepsi, Soda::cucumber, false);
 }
 
-Soda* SodaChooser::chooseTomatoCola() {
+Soda *SodaChooser::chooseTomatoCola() {
     return new Soda(Soda::Cola, Soda::tomato, true);
 }

@@ -12,13 +12,17 @@ using namespace std;
 
 
 class Product;
+
 class SodaChooser;
+
 class TeaChooser;
+
 class ChipsChooser;
 
-class Product{
+class Product {
 public:
     virtual string getName() = 0;
+
     virtual unsigned int getPrice() = 0;
 
 };
@@ -31,11 +35,11 @@ protected:
     enum brand {
         Cola, Fanta, Pepsi
     };
-    string brandString [3] {"Cola", "Fanta", "Pepsi"};
+    string brandString[3]{"Cola", "Fanta", "Pepsi"};
     enum flavour {
         orange, tomato, cucumber
     };
-    string flavourString [3] {"orange", "tomato", "cucumber"};
+    string flavourString[3]{"orange", "tomato", "cucumber"};
 
 private:
     brand sodaBrand;
@@ -61,7 +65,7 @@ protected:
         black, green, red, fruit
     };
 
-    string colorString [4] {"black", "green", "red", "fruit"};
+    string colorString[4]{"black", "green", "red", "fruit"};
 
 private:
     color teaColor;
@@ -86,11 +90,11 @@ protected:
     enum flavour {
         chili, paprika, salt
     };
-    string flavourString [4] {"chili", "paprika", "salt"};
+    string flavourString[4]{"chili", "paprika", "salt"};
     enum form {
         round, sqare
     };
-    string formString [2] {"round", "sqare"};
+    string formString[2]{"round", "sqare"};
 
 private:
     flavour chipFlavour;
@@ -109,19 +113,23 @@ public:
 
 
 class ShoppingCart {
-    vector<Product*> cart;
+    vector<Product *> cart;
 public:
 
     void addProduct(Product *p);
 
     unsigned int getPrice();
 
-    friend ostream& operator << (ostream &out, const ShoppingCart &s);
+    friend ostream &operator<<(ostream &out, const ShoppingCart &s);
 };
 
-class TeaChooser {
+class AbstractChooser {
+
+};
+
+class TeaChooser : AbstractChooser {
 public:
-    TeaChooser () = default;
+    TeaChooser() = default;
 
     Tea *chooseHotBlackTeaWithSugar();
 
@@ -130,17 +138,17 @@ public:
     Tea *chooseColdBlactTeaWithSugarAndIce();
 };
 
-class ChipsChooser {
+class ChipsChooser : AbstractChooser {
 public:
 
-    ChipsChooser () = default;
+    ChipsChooser() = default;
 
     Chips *chooseMuchHotRoundChips();
 
     Chips *chooseSomeSaltSqareChips();
 };
 
-class SodaChooser {
+class SodaChooser : AbstractChooser {
 public:
 
     SodaChooser() = default;
@@ -152,5 +160,20 @@ public:
     Soda *chooseCucumberPepsiWitoutGas();
 };
 
+
+class Shop {
+
+    unsigned int usableMoney;
+
+    vector<AbstractChooser *> productAssortment;
+
+public:
+
+    Shop(unsigned int money);
+
+    void addProductInAssortment(AbstractChooser *);
+
+
+};
 
 #endif //SHOP_CART_H

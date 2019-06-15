@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 
-#include "Cart.h"
+#include "Shop.h"
 
 using namespace std;
 
+enum currency {rub, eur, usd, jpy};
 
 int main() {
 
