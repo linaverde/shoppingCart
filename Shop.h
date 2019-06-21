@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include "Money.h"
 
 using namespace std;
 
@@ -21,9 +22,9 @@ class ChipsChooser;
 
 class Product {
 public:
-    virtual string getName() = 0;
+    virtual string getName();
 
-    virtual unsigned int getPrice() = 0;
+    virtual unsigned int getPrice();
 
 };
 
@@ -111,12 +112,14 @@ public:
     friend ChipsChooser;
 };
 
+typedef pair<Product *, unsigned int> goods;
+
 
 class ShoppingCart {
-    vector<Product *> cart;
+    vector<goods> cart;
 public:
 
-    void addProduct(Product *p);
+    void addProduct(goods *g);
 
     unsigned int getPrice();
 
@@ -163,15 +166,17 @@ public:
 
 class Shop {
 
-    unsigned int usableMoney;
+    unsigned int usableMoneyCurrency;
 
-    vector<AbstractChooser *> productAssortment;
+    vector<Product*> productAssortment;
 
 public:
 
     Shop(unsigned int money);
 
-    void addProductInAssortment(AbstractChooser *);
+    void addProductInAssortment(Product *p);
+
+    goods *getProductFromAssort(unsigned int index);
 
 
 };

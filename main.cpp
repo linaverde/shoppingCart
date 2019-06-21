@@ -10,7 +10,7 @@ using namespace std;
 
 int main() {
 
-    ShoppingCart cart;
+    /*ShoppingCart cart;
 
     cart.addProduct(TeaChooser().chooseHotBlackTeaWithSugar());
     cart.addProduct(ChipsChooser().chooseSomeSaltSqareChips());
@@ -36,8 +36,26 @@ int main() {
 
     myWallet.addMoney(*converted);
 
-    cout << "Ура я могу печатать деньги" << endl;
+    cout << "Ура я могу печатать деньги" << endl;*/
 
+    TeaChooser teaChooser;
+    SodaChooser sodaChooser;
+    ChipsChooser chipsChooser;
 
+    Shop *FirstShop = new Shop (rub);
+    FirstShop->addProductInAssortment(sodaChooser.chooseStandartFanta());
+    FirstShop->addProductInAssortment(teaChooser.chooseColdGreenTeaWithoutSugar());
+    FirstShop->addProductInAssortment(chipsChooser.chooseSomeSaltSqareChips());
+
+    Shop *SecondShop = new Shop (jpy);
+    SecondShop->addProductInAssortment(sodaChooser.chooseCucumberPepsiWitoutGas());
+    SecondShop->addProductInAssortment(sodaChooser.chooseCucumberPepsiWitoutGas());
+
+    ShoppingCart cart;
+    cart.addProduct(FirstShop->getProductFromAssort(5));
+    cart.addProduct(FirstShop->getProductFromAssort(1));
+    cart.addProduct(SecondShop->getProductFromAssort(0));
+
+    cout << cart;
 
 }

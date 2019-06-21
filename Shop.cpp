@@ -2,8 +2,15 @@
 // Created by polina on 27.04.19.
 //
 #include <ostream>
-#include <iostream>
 #include "Shop.h"
+
+string Product::getName() {
+    return "";
+}
+
+unsigned int Product::getPrice() {
+    return 0;
+}
 
 Soda::Soda(brand sodaBrand, flavour sodaFlavour, bool isGas) {
     this->sodaBrand = sodaBrand;
@@ -93,21 +100,22 @@ unsigned int Chips::getPrice() {
 }
 
 
-void ShoppingCart::addProduct(Product *p) {
-    cart.push_back(p);
+void ShoppingCart::addProduct(goods *g) {
+    if (g != nullptr)
+        cart.push_back(*g);
 }
 
 unsigned int ShoppingCart::getPrice() {
     unsigned int price = 0;
     for (int i = 0; i < cart.size(); i++) {
-        price += cart.at(i)->getPrice();
+        price += cart.at(i).first->getPrice();
     }
     return price;
 }
 
 std::ostream &operator<<(std::ostream &out, const ShoppingCart &s) {
     for (int i = 0; i < s.cart.size(); i++) {
-        out << s.cart.at(i)->getName() << std::endl;
+        out << s.cart.at(i).first->getName() << std::endl;
     }
     return out;
 }
@@ -143,4 +151,20 @@ Soda *SodaChooser::chooseCucumberPepsiWitoutGas() {
 
 Soda *SodaChooser::chooseTomatoCola() {
     return new Soda(Soda::Cola, Soda::tomato, true);
+}
+
+Shop::Shop(unsigned int money) {
+    this->usableMoneyCurrency = money;
+}
+
+void Shop::addProductInAssortment(Product *p) {
+    this->productAssortment.push_back(p);
+}
+
+goods *Shop::getProductFromAssort(unsigned int index) {
+    if (index >= productAssortment.size())
+        return nullptr;
+    goods *g = new goods;
+    *g = make_pair(this->productAssortment.at(index), this->usableMoneyCurrency);
+    return g;
 }
