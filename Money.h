@@ -1,5 +1,6 @@
 #include <vector>
 
+
 #ifndef SHOP_MONEY_H
 #define SHOP_MONEY_H
 

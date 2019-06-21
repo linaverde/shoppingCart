@@ -1,5 +1,4 @@
 #include <cmath>
-
 #include "Money.h"
 
 Money::Money(unsigned int currency, unsigned int count) {

@@ -36,6 +36,7 @@ int main() {
 
     cout << "Ура я могу печатать деньги" << endl;*/
 
+
     TeaChooser teaChooser;
     SodaChooser sodaChooser;
     ChipsChooser chipsChooser;

@@ -4,7 +4,6 @@
 #include <ostream>
 #include "Shop.h"
 
-
 Soda::Soda(brand sodaBrand, flavour sodaFlavour, bool isGas) {
     this->sodaBrand = sodaBrand;
     this->sodaFlavour = sodaFlavour;

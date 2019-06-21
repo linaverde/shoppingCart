@@ -11,7 +11,6 @@
 
 using namespace std;
 
-
 class Customer {
 protected:
     ShoppingCart cart;

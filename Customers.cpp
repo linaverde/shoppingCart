@@ -5,7 +5,6 @@
 #include <cmath>
 #include "Customers.h"
 
-
 bool Customer::canBuyAll() {
     Wallet neededMoney;
     for (unsigned int i = 0; i < cart.products.size(); i++){
