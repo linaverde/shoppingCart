@@ -42,6 +42,8 @@ public:
     void addMoney(Money money);
 
     bool rmMoney(Money money);
+
+    friend class Customer;
 };
 
 class Converter {

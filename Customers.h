@@ -13,50 +13,48 @@ using namespace std;
 
 
 class Customer {
-    ShoppingCart *cart;
-public:
-
-    virtual bool isSatisfied() = 0;
-
-    virtual bool canBuyAll() = 0;
-
-};
-
-class Human : Customer {
-    Wallet *wallet;
+protected:
     ShoppingCart cart;
+    Wallet wallet;
+
 public:
-    bool isSatisfied() override;
 
-    bool canBuyAll() override;
-};
+    virtual bool isSatisfied();
 
-class Child : Human {
-public:
-    bool isSatisfied() override;
+    bool canBuyAll();
 
-};
+    Wallet* getWallet();
 
-class Man : Human {
-public:
-    bool isSatisfied() override;
+    ShoppingCart* getCart();
 
 };
 
-class Woman : Human {
+
+class Child : private Customer {
 public:
     bool isSatisfied() override;
 
 };
 
-class Family : Customer {
+class Man : public Customer {
+public:
+    bool isSatisfied() override;
+
+};
+
+class Woman : public Customer {
+public:
+    bool isSatisfied() override;
+
+};
+
+/*class Family : Customer {
     vector<Human> members;
 public:
     void addMember(Human *member);
 
     bool isSatisfied() override;
 
-    bool canBuyAll() override;
-};
+}; */
 
 #endif //SHOP_CUSTOMERS_H

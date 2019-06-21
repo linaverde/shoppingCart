@@ -4,13 +4,6 @@
 #include <ostream>
 #include "Shop.h"
 
-string Product::getName() {
-    return "";
-}
-
-unsigned int Product::getPrice() {
-    return 0;
-}
 
 Soda::Soda(brand sodaBrand, flavour sodaFlavour, bool isGas) {
     this->sodaBrand = sodaBrand;
@@ -41,6 +34,10 @@ unsigned int Soda::getPrice() {
             break;
     }
     return price;
+}
+
+string Soda::getType() {
+    return "Soda";
 }
 
 Tea::Tea(bool hot, color teaColor, bool withIce, unsigned int sugarCount) {
@@ -78,6 +75,10 @@ unsigned int Tea::getPrice() {
     return price;
 }
 
+string Tea::getType() {
+    return "Tea";
+}
+
 Chips::Chips(flavour chipFlavour, form chipForm, unsigned int chipCount) {
     this->chipFlavour = chipFlavour;
     this->chipForm = chipForm;
@@ -99,23 +100,32 @@ unsigned int Chips::getPrice() {
     return chipsCount * 30;
 }
 
+string Chips::getType() {
+    return "Chips";
+}
+
 
 void ShoppingCart::addProduct(goods *g) {
     if (g != nullptr)
-        cart.push_back(*g);
+        products.push_back(*g);
 }
 
-unsigned int ShoppingCart::getPrice() {
+unsigned int ShoppingCart::getPriceInCurrency(unsigned int currency) {
     unsigned int price = 0;
-    for (int i = 0; i < cart.size(); i++) {
-        price += cart.at(i).first->getPrice();
+    for (int i = 0; i < products.size(); i++) {
+        if (products.at(i).second == currency)
+            price += products.at(i).first->getPrice();
     }
     return price;
 }
 
+vector<goods>* ShoppingCart::getProductList() {
+    return &products;
+}
+
 std::ostream &operator<<(std::ostream &out, const ShoppingCart &s) {
-    for (int i = 0; i < s.cart.size(); i++) {
-        out << s.cart.at(i).first->getName() << std::endl;
+    for (int i = 0; i < s.products.size(); i++) {
+        out << s.products.at(i).first->getName() << std::endl;
     }
     return out;
 }
@@ -167,4 +177,8 @@ goods *Shop::getProductFromAssort(unsigned int index) {
     goods *g = new goods;
     *g = make_pair(this->productAssortment.at(index), this->usableMoneyCurrency);
     return g;
+}
+
+vector <Product*>* Shop::getAssortment() {
+    return &productAssortment;
 }

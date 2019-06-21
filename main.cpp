@@ -6,19 +6,17 @@
 
 using namespace std;
 
-
-
 int main() {
 
-    /*ShoppingCart cart;
+    /*ShoppingCart products;
 
-    cart.addProduct(TeaChooser().chooseHotBlackTeaWithSugar());
-    cart.addProduct(ChipsChooser().chooseSomeSaltSqareChips());
-    cart.addProduct(SodaChooser().chooseCucumberPepsiWitoutGas());
+    products.addProduct(TeaChooser().chooseHotBlackTeaWithSugar());
+    products.addProduct(ChipsChooser().chooseSomeSaltSqareChips());
+    products.addProduct(SodaChooser().chooseCucumberPepsiWitoutGas());
 
-    cout << cart;
+    cout << products;
 
-    cout << "Products' price is " << cart.getPrice();
+    cout << "Products' price is " << products.getPrice();
 
     MoneyPress press;
 
@@ -42,6 +40,8 @@ int main() {
     SodaChooser sodaChooser;
     ChipsChooser chipsChooser;
 
+    MoneyPress press;
+
     Shop *FirstShop = new Shop (rub);
     FirstShop->addProductInAssortment(sodaChooser.chooseStandartFanta());
     FirstShop->addProductInAssortment(teaChooser.chooseColdGreenTeaWithoutSugar());
@@ -51,11 +51,12 @@ int main() {
     SecondShop->addProductInAssortment(sodaChooser.chooseCucumberPepsiWitoutGas());
     SecondShop->addProductInAssortment(sodaChooser.chooseCucumberPepsiWitoutGas());
 
-    ShoppingCart cart;
-    cart.addProduct(FirstShop->getProductFromAssort(5));
-    cart.addProduct(FirstShop->getProductFromAssort(1));
-    cart.addProduct(SecondShop->getProductFromAssort(0));
+    Customer randomCustomer;
+    randomCustomer.getWallet()->addMoney(*press.printMoney(rub, 500));
+    //randomCustomer.getCart()->addProduct(FirstShop->getProductFromAssort(2));
+    randomCustomer.getCart()->addProduct(FirstShop->getProductFromAssort(1));
+    cout << randomCustomer.canBuyAll() << "  " << randomCustomer.isSatisfied();
 
-    cout << cart;
+    Child child;
 
 }

@@ -22,9 +22,11 @@ class ChipsChooser;
 
 class Product {
 public:
-    virtual string getName();
+    virtual string getName() = 0;
 
-    virtual unsigned int getPrice();
+    virtual unsigned int getPrice() = 0;
+
+    virtual string getType() = 0;
 
 };
 
@@ -55,6 +57,8 @@ public:
 
     unsigned int getPrice() override;
 
+    string getType() override;
+
     friend SodaChooser;
 
 };
@@ -81,6 +85,8 @@ public:
     string getName() override;
 
     unsigned int getPrice() override;
+
+    string getType() override;
 
     friend TeaChooser;
 
@@ -109,6 +115,8 @@ public:
 
     unsigned int getPrice() override;
 
+    string getType() override;
+
     friend ChipsChooser;
 };
 
@@ -116,14 +124,18 @@ typedef pair<Product *, unsigned int> goods;
 
 
 class ShoppingCart {
-    vector<goods> cart;
+    vector<goods> products;
 public:
+
+    vector<goods>* getProductList();
 
     void addProduct(goods *g);
 
-    unsigned int getPrice();
+    unsigned int getPriceInCurrency(unsigned int currency);
 
     friend ostream &operator<<(ostream &out, const ShoppingCart &s);
+
+    friend class Customer;
 };
 
 class AbstractChooser {
@@ -177,6 +189,8 @@ public:
     void addProductInAssortment(Product *p);
 
     goods *getProductFromAssort(unsigned int index);
+
+    vector <Product*> *getAssortment();
 
 
 };
