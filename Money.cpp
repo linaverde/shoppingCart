@@ -36,19 +36,19 @@ void Wallet::addMoney(Money money) {
 
 bool Wallet::rmMoney(Money money) {
     for (unsigned int i = 0; i < savingMoney.size(); i++) {
-        if (money.getCurrency() == savingMoney.at(i).getCurrency()) {
-            if (money.getCount() > savingMoney.at(i).getCount()) {
-                return false;
-            } else {
-                savingMoney.at(i).changeCount(-money.getCount());
-                return true;
-            }
+        if (money.getCurrency() == savingMoney.at(i).getCurrency() &&
+            money.getCount() <= savingMoney.at(i).getCount()) {
+            savingMoney.at(i).changeCount(-money.getCount());
+            return true;
         }
     }
     return false;
 }
 
-Converter::rate::rate(unsigned int from, unsigned int into, float ratio) {
+Converter::rate::rate(unsigned int
+                      from, unsigned int
+                      into, float
+                      ratio) {
     this->from = from;
     this->into = into;
     this->ratio = ratio;
@@ -69,7 +69,8 @@ void Converter::addRate(unsigned int from, unsigned int into, float ratio) {
 Money *Converter::convert(Money &from, unsigned int into) {
     for (unsigned int i = 0; i < rateCollection.size(); i++) {
         if (from.getCurrency() == rateCollection.at(i).from && into == rateCollection.at(i).into) {
-            Money *converted = (new MoneyPress)->printMoney(into, round(from.getCount() * rateCollection.at(i).ratio));
+            Money *converted = (new MoneyPress)->printMoney(into,
+                                                            round(from.getCount() * rateCollection.at(i).ratio));
             delete &from;
             return converted;
         }

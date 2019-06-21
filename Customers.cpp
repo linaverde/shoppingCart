@@ -13,9 +13,8 @@ bool Customer::canBuyAll() {
     }
     Wallet copy = this->wallet;
 
-    for (unsigned int i = 0; i < copy.savingMoney.size(); i++){
-        bool flag = neededMoney.rmMoney(copy.savingMoney.at(i));
-        if (flag) return false;
+    for (unsigned int i = 0; i < neededMoney.savingMoney.size(); i++){
+        if (!copy.rmMoney(neededMoney.savingMoney.at(i))) return false;
     }
     return true;
 }
@@ -35,9 +34,8 @@ Wallet* Customer::getWallet() {
 
 
 bool Child::isSatisfied() {
-    if (!canBuyAll()) return false;
     for(unsigned int i = 0; i < cart.getProductList()->size(); i++){
-        if (cart.getProductList()->at(i).first->getName() == "Chips") return true;
+        if (cart.getProductList()->at(i).first->getType() == "Chips") return true;
     }
     return false;
 }

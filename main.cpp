@@ -55,8 +55,11 @@ int main() {
     randomCustomer.getWallet()->addMoney(*press.printMoney(rub, 500));
     //randomCustomer.getCart()->addProduct(FirstShop->getProductFromAssort(2));
     randomCustomer.getCart()->addProduct(FirstShop->getProductFromAssort(1));
-    cout << randomCustomer.canBuyAll() << "  " << randomCustomer.isSatisfied();
+    cout << randomCustomer.canBuyAll() << "  " << randomCustomer.isSatisfied() <<endl;
 
     Child child;
+    child.getCart()->addProduct(FirstShop->getProductFromAssort(0));
+    child.getCart()->addProduct(FirstShop->getProductFromAssort(2));
+    cout << child.isSatisfied();
 
 }

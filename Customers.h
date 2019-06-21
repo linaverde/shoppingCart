@@ -17,20 +17,22 @@ protected:
     ShoppingCart cart;
     Wallet wallet;
 
+
+
 public:
 
     virtual bool isSatisfied();
 
     bool canBuyAll();
 
-    Wallet* getWallet();
+    Wallet *getWallet();
 
-    ShoppingCart* getCart();
+    ShoppingCart *getCart();
 
 };
 
 
-class Child : private Customer {
+class Child : public Customer {
 public:
     bool isSatisfied() override;
 
